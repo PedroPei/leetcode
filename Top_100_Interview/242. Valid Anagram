@@ -12,6 +12,12 @@ Follow up:
 What if the inputs contain unicode characters? How would you adapt your solution to such case?
 */
 
+/*
+    Java uses Unicode while C++ uses ASCII.
+    Given that the unicode retain the relative order of alphabet,it's ok to use a-'a' and the result could be converted to integer
+
+*/
+
 
 
 //cpp solution 1
@@ -40,4 +46,15 @@ public:
 };
 
 
-//cpp solution 2
+//java solution 2
+public class Solution {
+    public boolean isAnagram(String s, String t) {
+        int[] alphabet = new int[26];
+        for (int i = 0; i < s.length(); i++) alphabet[s.charAt(i) - 'a']++;
+        for (int i = 0; i < t.length(); i++) alphabet[t.charAt(i) - 'a']--;
+        for (int i : alphabet) if (i != 0) return false;
+        return true;
+    }
+}
+
+
