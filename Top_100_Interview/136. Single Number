@@ -1,0 +1,38 @@
+/*
+Given an array of integers, every element appears twice except for one. Find that single one.
+
+Note:
+Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+
+*/
+
+
+
+
+//Java solution using HashSet
+public class Solution {
+    public int singleNumber(int[] nums) {
+        HashSet<Integer> setA = new HashSet<Integer>();   
+        for(int n : nums){
+            Integer it = new Integer(n);
+            if(setA.contains(it)) setA.remove(it);
+            else setA.add(it);
+        }
+        Iterator<Integer> it = setA.iterator();
+        return it.next().intValue();
+    }
+}
+
+
+
+//C++ solution using xor
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int res = 0;
+        for(int i = 0;i < nums.size();i ++){
+            res ^= nums[i];
+        }
+        return res;
+    }
+};
