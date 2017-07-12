@@ -1,0 +1,46 @@
+/*
+Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.
+
+Example:
+Given a = 1 and b = 2, return 3.
+
+*/
+
+
+//This problem want us to build an adder which is taught in computer organization and design
+//There are basically two ways to solve this problem
+//The first is simply use bit operator and  carry flag.
+
+//Here's the C++ solution
+//In this solution I use a loop to calculate every bit position in both the number.
+class Solution {
+public:
+    int getSum(int a, int b) {
+        int c = a,d = b,flag = 0,res = 0,result = 0;
+        int cover = 1;
+        for(int i = 0;i < 32;i ++){
+            c = a & cover;
+            d = b & cover;
+            if(a == 0 && b == 0 && flag == 0) break;
+            res = (c & d & flag) | (c & ~d & ~flag) | (~c & ~d & flag) | (~c & d & ~flag);
+            flag = ((c & d) | (c & flag) | (flag & d)) << 1;
+            result = result | res;
+            cover <<= 1;
+        }
+        return result;
+    }
+};
+
+
+//In this solution ，we use recursion instead of loop
+    
+    public int getSum(int a, int b) {
+     if(b == 0){//没有进为的时候完成运算
+        return a;
+    }
+    int sum,carry;
+    sum = a^b;//完成第一步加发的运算
+    carry = (a&b)<<1;//完成第二步进位并且左移运算
+    return getSum(sum,carry);//
+    }
+
