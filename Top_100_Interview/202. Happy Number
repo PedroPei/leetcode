@@ -1,0 +1,38 @@
+/*
+Write an algorithm to determine if a number is "happy".
+
+A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.
+
+Example: 19 is a happy number
+
+12 + 92 = 82
+82 + 22 = 68
+62 + 82 = 100
+12 + 02 + 02 = 1
+*/
+
+//It's easy to solve this question because it has been clarified in the description that there are only two possible conditions.
+//Here we use a hashset to check if the number has emerged.
+//if we find the 1,we can stop the loop and return true
+//if we find we have get into a loop without the 1,we can break it and return false
+
+public class Solution {
+    public boolean isHappy(int n) {
+        HashSet<Integer> it = new HashSet<Integer>();
+        Integer b = new Integer(n);
+        while(!it.contains(b)){
+            it.add(b);
+            b = new Integer(cal(b.intValue()));
+            if(b.intValue() == 1) return true;
+        }
+        return false;
+    }
+    public int cal(int m){
+        int res = 0;
+        while(m != 0){
+            res += (m % 10)*(m % 10);
+            m /= 10;
+        }
+        return res;
+    }
+}
