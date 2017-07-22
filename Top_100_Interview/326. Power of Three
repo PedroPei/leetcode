@@ -6,7 +6,7 @@ Could you do it without using any loop / recursion?
 */
 
 
-
+//Solution 1
 //use log can solve this problem without any loop or recursion
 
 
@@ -14,5 +14,16 @@ Could you do it without using any loop / recursion?
 public class Solution {
     public boolean isPowerOfThree(int n) {
         return (Math.log10(n) / Math.log10(3)) % 1 == 0; 
+    }
+}
+
+
+
+//Solution 2 
+//Using the biggest power of 3 no more than the biggest Integer
+
+public class Solution {
+    public boolean isPowerOfThree(int n) {
+        return n > 0 && 1162261467 % n == 0;
     }
 }
